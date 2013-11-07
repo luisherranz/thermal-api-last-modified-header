@@ -10,13 +10,14 @@ Version: 1.0.0
 
 add_filter( 'thermal_response',  function(&$res, &$app, &$data ) {
 		
-        $wp_last_mod_time = strtotime(get_lastpostmodified('gmt'));
-        $wp_last_mod_time = strtotime(get_lastpostmodified('gmt'));
+        $wp_last_mod_time = strtotime( get_lastpostmodified('gmt') );
+        $wp_last_mod_time = strtotime( get_lastpostmodified('gmt') );
         $wp_last_mod_date = date( "D, d M Y H:i:s \G\M\T", $wp_last_mod_time );
 
-        $res->header( 'Last-Modified', $wp_last_mod_date );
+        //$res->header( 'Last-Modified', $wp_last_mod_date );
+        $app->lastModified( $wp_last_mod_time );
 
-    	return $res;
+    	return $app;
 
         }, 10, 3);
 ?>
